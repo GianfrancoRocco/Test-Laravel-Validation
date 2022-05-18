@@ -3,12 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Uppercase;
 
-// TASK: Customize the validation error message to say "Please enter the name"
-class StoreBuildingRequest extends FormRequest
+class StoreArticleRequest extends FormRequest
 {
-    protected $redirectRoute = 'buildings.create';
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -27,14 +25,7 @@ class StoreBuildingRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'name.required' => 'Please enter the name'
+            'title' => ['required', new Uppercase()]
         ];
     }
 }
